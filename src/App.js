@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./App.css";
 import {ContactList} from "./ContactList";
 import {Score} from "./Score";
+import {Container} from "react-bootstrap";
 
 const contacts = [
     {id: 1, name: "Honza", phone: "123", email: "mail@mdafds.cs"},
@@ -25,7 +26,7 @@ function App() {
     }
 
     return (
-        <div className="App">
+        <Container>
             <Score
                 domaci={counter}
                 hoste={counter2}
@@ -34,7 +35,7 @@ function App() {
             />
             <ContactList contacts={contacts} />
             {counter}:{counter2}
-        </div>
+        </Container>
     );
 }
 

@@ -1,10 +1,12 @@
+import {Button} from "react-bootstrap";
+
 export function Score(props) {
     return (
         <div>
             Score: {props.domaci}:{props.hoste}
             <p>
-                <button onClick={props.increaseDomaci}>Domaci</button>
-                <button onClick={props.increaseHoste}>Hoste</button>
+                <Button onClick={props.increaseDomaci}>Domaci</Button>{" "}
+                <Button onClick={props.increaseHoste}>Hoste</Button>
             </p>
         </div>
     );
