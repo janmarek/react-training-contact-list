@@ -1,4 +1,5 @@
 import {Formik, ErrorMessage, Form, Field} from "formik";
+import * as yup from "yup";
 
 const initialValues = {
     name: "",
@@ -6,26 +7,11 @@ const initialValues = {
     email: "@",
 };
 
-function validate(values) {
-    const errors = {};
-
-    const nameValid = values.name !== "";
-    const phoneValid = values.phone !== "";
-    const emailValid = values.email !== "";
-
-    if (!nameValid) {
-        errors.name = "Name is not valid";
-    }
-
-    if (!phoneValid) {
-        errors.phone = "Phone is not valid";
-    }
-    if (!emailValid) {
-        errors.email = "Email is not valid";
-    }
-
-    return errors;
-}
+const validation = yup.object().shape({
+    name: yup.string().required(),
+    phone: yup.string().required("Neni vyplneno"),
+    email: yup.string().required().email(),
+});
 
 export function AddPage() {
     function submit(values) {
@@ -38,7 +24,7 @@ export function AddPage() {
             <Formik
                 onSubmit={submit}
                 initialValues={initialValues}
-                validate={validate}
+                validationSchema={validation}
             >
                 {() => (
                     <Form>
