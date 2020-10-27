@@ -1,10 +1,22 @@
+import {useState} from "react";
+
 export function AddPage() {
+    const [formValues, setFormValues] = useState({
+        name: "",
+        phone: "+420 ",
+        email: "@",
+    });
+
+    function handleChange(e) {
+        setFormValues({
+            ...formValues,
+            [e.target.name]: e.target.value,
+        });
+    }
+
     function submit(e) {
         e.preventDefault();
-        const nameValue = e.target.name.value;
-        const phoneValue = e.target.phone.value;
-        const emailValue = e.target.email.value;
-        console.log(nameValue, phoneValue, emailValue);
+        console.log(formValues);
     }
 
     return (
@@ -14,17 +26,32 @@ export function AddPage() {
                 <p>
                     Name:
                     <br />
-                    <input type="text" name="name" />
+                    <input
+                        type="text"
+                        name="name"
+                        value={formValues.name}
+                        onChange={handleChange}
+                    />
                 </p>
                 <p>
-                    Phone:
+                    Phone {formValues.phone}:
                     <br />
-                    <input type="text" name="phone" />
+                    <input
+                        type="text"
+                        name="phone"
+                        value={formValues.phone}
+                        onChange={handleChange}
+                    />
                 </p>
                 <p>
                     Email:
                     <br />
-                    <input type="text" name="email" />
+                    <input
+                        type="text"
+                        name="email"
+                        value={formValues.email}
+                        onChange={handleChange}
+                    />
                 </p>
                 <p>
                     <button type="submit">Save</button>
