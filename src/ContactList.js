@@ -2,7 +2,7 @@ import {Contact} from "./Contact";
 
 export function ContactList(props) {
     return (
-        <div>
+        <>
             {props.contacts.map((contact) => (
                 <Contact
                     key={contact.id}
@@ -11,6 +11,6 @@ export function ContactList(props) {
                     email={contact.email}
                 />
             ))}
-        </div>
+        </>
     );
 }
