@@ -23,5 +23,5 @@ Score.Card = styled(Card)`
 `;
 
 Score.Title = styled(Card.Title)`
-    color: blue;
+    color: var(--purple);
 `;
