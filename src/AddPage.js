@@ -2,6 +2,7 @@ import {Formik, ErrorMessage, Form as FormikForm} from "formik";
 import {contactValidation, saveContact} from "./contactModel";
 import {Form, Button, Alert} from "react-bootstrap";
 import {useState} from "react";
+import {useHistory} from "react-router-dom";
 
 const initialValues = {
     name: "",
@@ -13,6 +14,8 @@ export function AddPage() {
     const [savedSuccessfully, setSavedSucessfully] = useState(false);
     const [savedWithError, setSavedWithError] = useState(false);
 
+    const history = useHistory();
+
     function submit(values, {resetForm}) {
         setSavedWithError(false);
         setSavedSucessfully(false);
@@ -21,6 +24,7 @@ export function AddPage() {
             .then(() => {
                 setSavedSucessfully(true);
                 resetForm();
+                history.push("/");
             })
             .catch(() => {
                 setSavedWithError(true);
