@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import "./App.css";
-import {Contact} from "./Contact";
 import {ContactList} from "./ContactList";
 
 const contacts = [
@@ -16,9 +15,16 @@ function App() {
     // const counter = stateArray[0];
     // const setCounter = stateArray[1];
 
+    function increaseCounter() {
+        setCounter(counter + 1);
+    }
+
     return (
         <div className="App">
             <p>Counter: {counter}</p>
+            <p>
+                <button onClick={increaseCounter}>Increase counter</button>
+            </p>
             <ContactList contacts={contacts} />
         </div>
     );
