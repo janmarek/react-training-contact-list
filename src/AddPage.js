@@ -19,11 +19,16 @@ export function AddPage() {
         console.log(formValues);
     }
 
+    const nameValid = formValues.name !== "";
+    const phoneValid = formValues.phone !== "";
+    const emailValid = formValues.email !== "";
+    const formValid = nameValid && phoneValid && emailValid;
+
     return (
         <>
             <h2>Add Contact</h2>
             <form onSubmit={submit}>
-                <p>
+                <div>
                     Name:
                     <br />
                     <input
@@ -32,8 +37,11 @@ export function AddPage() {
                         value={formValues.name}
                         onChange={handleChange}
                     />
-                </p>
-                <p>
+                    {!nameValid && (
+                        <div className="text-danger">Name is not valid</div>
+                    )}
+                </div>
+                <div>
                     Phone {formValues.phone}:
                     <br />
                     <input
@@ -42,8 +50,11 @@ export function AddPage() {
                         value={formValues.phone}
                         onChange={handleChange}
                     />
-                </p>
-                <p>
+                    {!phoneValid && (
+                        <div className="text-danger">Phone is not valid</div>
+                    )}
+                </div>
+                <div>
                     Email:
                     <br />
                     <input
@@ -52,9 +63,14 @@ export function AddPage() {
                         value={formValues.email}
                         onChange={handleChange}
                     />
-                </p>
+                    {!emailValid && (
+                        <div className="text-danger">Email is not valid</div>
+                    )}
+                </div>
                 <p>
-                    <button type="submit">Save</button>
+                    <button type="submit" disabled={!formValid}>
+                        Save
+                    </button>
                 </p>
             </form>
         </>
