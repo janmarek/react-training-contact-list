@@ -47,59 +47,73 @@ export function AddPage() {
                     values,
                     errors,
                     touched,
-                }) => (
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            Name:
-                            <br />
-                            <input
-                                type="text"
-                                name="name"
-                                value={values.name}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                            {errors.name && touched.name && (
-                                <div className="text-danger">{errors.name}</div>
-                            )}
-                        </div>
-                        <div>
-                            Phone {values.phone}:
-                            <br />
-                            <input
-                                type="text"
-                                name="phone"
-                                value={values.phone}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                            <ErrorMessage
-                                name="phone"
-                                render={(err) => (
-                                    <div className="text-danger">{err}</div>
+                }) => {
+                    function handlePhoneChange(e) {
+                        const value = e.target.value;
+                        if (value.match(/^\+420 /)) {
+                            handleChange(e);
+                        }
+                    }
+
+                    return (
+                        <form onSubmit={handleSubmit}>
+                            <div>
+                                Name:
+                                <br />
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={values.name}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {errors.name && touched.name && (
+                                    <div className="text-danger">
+                                        {errors.name}
+                                    </div>
                                 )}
-                            />
-                        </div>
-                        <div>
-                            Email:
-                            <br />
-                            <input
-                                type="text"
-                                name="email"
-                                value={values.email}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                            <ErrorMessage name="email" component={ErrorView} />
-                            <ErrorView>
-                                dgsdfgdf <strong>sdfdsf</strong>
-                            </ErrorView>
-                        </div>
-                        <p>
-                            <button type="submit">Save</button>
-                        </p>
-                    </form>
-                )}
+                            </div>
+                            <div>
+                                Phone {values.phone}:
+                                <br />
+                                <input
+                                    type="text"
+                                    name="phone"
+                                    value={values.phone}
+                                    onChange={handlePhoneChange}
+                                    onBlur={handleBlur}
+                                />
+                                <ErrorMessage
+                                    name="phone"
+                                    render={(err) => (
+                                        <div className="text-danger">{err}</div>
+                                    )}
+                                />
+                            </div>
+                            <div>
+                                Email:
+                                <br />
+                                <input
+                                    type="text"
+                                    name="email"
+                                    value={values.email}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                <ErrorMessage
+                                    name="email"
+                                    component={ErrorView}
+                                />
+                                <ErrorView>
+                                    dgsdfgdf <strong>sdfdsf</strong>
+                                </ErrorView>
+                            </div>
+                            <p>
+                                <button type="submit">Save</button>
+                            </p>
+                        </form>
+                    );
+                }}
             </Formik>
         </>
     );
