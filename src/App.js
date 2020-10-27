@@ -9,8 +9,14 @@ import {UserContext} from "./UserContext";
 function App() {
     const [user, setUser] = useState({name: "Vratislav", loggedIn: true});
 
+    function logout() {
+        setUser({name: "Anonymous", loggedIn: false});
+    }
+
+    const contextValue = {...user, logout};
+
     return (
-        <UserContext.Provider value={user}>
+        <UserContext.Provider value={contextValue}>
             <Container>
                 <BrowserRouter>
                     <Switch>
