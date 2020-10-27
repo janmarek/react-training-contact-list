@@ -1,5 +1,5 @@
 import {Formik, ErrorMessage, Form as FormikForm} from "formik";
-import * as yup from "yup";
+import {contactValidation, saveContact} from "./contactModel";
 import {Form, Button} from "react-bootstrap";
 
 const initialValues = {
@@ -8,15 +8,9 @@ const initialValues = {
     email: "@",
 };
 
-const validation = yup.object().shape({
-    name: yup.string().required(),
-    phone: yup.string().required("Neni vyplneno"),
-    email: yup.string().required().email(),
-});
-
 export function AddPage() {
     function submit(values) {
-        console.log(values);
+        saveContact(values);
     }
 
     return (
@@ -32,7 +26,7 @@ function AddForm({onSubmit}) {
         <Formik
             onSubmit={onSubmit}
             initialValues={initialValues}
-            validationSchema={validation}
+            validationSchema={contactValidation}
         >
             {({getFieldProps}) => (
                 <FormikForm>
