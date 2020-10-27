@@ -6,21 +6,48 @@ const initialValues = {
     email: "@",
 };
 
+function validate(values) {
+    const errors = {};
+
+    const nameValid = values.name !== "";
+    const phoneValid = values.phone !== "";
+    const emailValid = values.email !== "";
+
+    if (!nameValid) {
+        errors.name = "Name is not valid";
+    }
+
+    if (!phoneValid) {
+        errors.phone = "Phone is not valid";
+    }
+    if (!emailValid) {
+        errors.email = "Email is not valid";
+    }
+
+    return errors;
+}
+
 export function AddPage() {
     function submit(values) {
         console.log(values);
     }
 
-    // const nameValid = formValues.name !== "";
-    // const phoneValid = formValues.phone !== "";
-    // const emailValid = formValues.email !== "";
-    // const formValid = nameValid && phoneValid && emailValid;
-
     return (
         <>
             <h2>Add Contact</h2>
-            <Formik onSubmit={submit} initialValues={initialValues}>
-                {({handleSubmit, handleChange, values}) => (
+            <Formik
+                onSubmit={submit}
+                initialValues={initialValues}
+                validate={validate}
+            >
+                {({
+                    handleSubmit,
+                    handleChange,
+                    handleBlur,
+                    values,
+                    errors,
+                    touched,
+                }) => (
                     <form onSubmit={handleSubmit}>
                         <div>
                             Name:
@@ -30,12 +57,11 @@ export function AddPage() {
                                 name="name"
                                 value={values.name}
                                 onChange={handleChange}
+                                onBlur={handleBlur}
                             />
-                            {/* {!nameValid && (
-                                <div className="text-danger">
-                                    Name is not valid
-                                </div>
-                            )} */}
+                            {errors.name && touched.name && (
+                                <div className="text-danger">{errors.name}</div>
+                            )}
                         </div>
                         <div>
                             Phone {values.phone}:
