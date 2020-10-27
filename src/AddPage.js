@@ -1,6 +1,7 @@
 import {Formik, ErrorMessage, Form as FormikForm} from "formik";
 import {contactValidation, saveContact} from "./contactModel";
-import {Form, Button} from "react-bootstrap";
+import {Form, Button, Alert} from "react-bootstrap";
+import {useState} from "react";
 
 const initialValues = {
     name: "",
@@ -9,13 +10,28 @@ const initialValues = {
 };
 
 export function AddPage() {
-    function submit(values) {
-        saveContact(values);
+    const [savedSuccessfully, setSavedSucessfully] = useState(false);
+    const [savedWithError, setSavedWithError] = useState(false);
+
+    function submit(values, {resetForm}) {
+        setSavedWithError(false);
+        setSavedSucessfully(false);
+
+        saveContact(values)
+            .then(() => {
+                setSavedSucessfully(true);
+                resetForm();
+            })
+            .catch(() => {
+                setSavedWithError(true);
+            });
     }
 
     return (
         <>
             <h2>Add Contact</h2>
+            {savedSuccessfully && <Alert variant="success">Saved</Alert>}
+            {savedWithError && <Alert variant="danger">Error save</Alert>}
             <AddForm onSubmit={submit} />
         </>
     );
