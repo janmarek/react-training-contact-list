@@ -10,3 +10,7 @@ export const contactValidation = yup.object().shape({
 export function saveContact(contact) {
     return axios.post("/items", contact);
 }
+
+export function loadContacts() {
+    return axios.get("/items").then((res) => res.data.items);
+}

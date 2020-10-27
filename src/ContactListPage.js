@@ -1,13 +1,15 @@
 import {ContactList} from "./ContactList";
 import {Link} from "react-router-dom";
-
-const contacts = [
-    {id: 1, name: "Honza", phone: "123", email: "mail@mdafds.cs"},
-    {id: 2, name: "Pepa", phone: "09978", email: "mail@mdafds.cs"},
-    {id: 3, name: "Antonín", phone: "1234343", email: "mail@mdafds.cs"},
-];
+import {useState, useEffect} from "react";
+import {loadContacts} from "./contactModel";
 
 export function ContactListPage() {
+    const [contacts, setContacts] = useState([]);
+
+    useEffect(() => {
+        loadContacts().then((contacts) => setContacts(contacts));
+    }, []);
+
     return (
         <>
             <h2>Contact List</h2>
