@@ -26,12 +26,14 @@ function App() {
 
     return (
         <div className="App">
-            <Score domaci={counter} hoste={counter2} />
-            <p>
-                <button onClick={increaseCounter}>Domaci</button>
-                <button onClick={increaseCounter2}>Hoste</button>
-            </p>
+            <Score
+                domaci={counter}
+                hoste={counter2}
+                increaseDomaci={increaseCounter}
+                increaseHoste={increaseCounter2}
+            />
             <ContactList contacts={contacts} />
+            {counter}:{counter2}
         </div>
     );
 }
