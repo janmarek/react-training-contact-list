@@ -11,6 +11,7 @@ const contacts = [
 function App() {
     // react hook
     const [counter, setCounter] = useState(0);
+    const [counter2, setCounter2] = useState(0);
     // const stateArray = useState(0);
     // const counter = stateArray[0];
     // const setCounter = stateArray[1];
@@ -18,12 +19,18 @@ function App() {
     function increaseCounter() {
         setCounter(counter + 1);
     }
+    function increaseCounter2() {
+        setCounter2(counter2 + 1);
+    }
 
     return (
         <div className="App">
-            <p>Counter: {counter}</p>
             <p>
-                <button onClick={increaseCounter}>Increase counter</button>
+                Score: {counter}:{counter2}
+            </p>
+            <p>
+                <button onClick={increaseCounter}>Domaci</button>
+                <button onClick={increaseCounter2}>Hoste</button>
             </p>
             <ContactList contacts={contacts} />
         </div>
