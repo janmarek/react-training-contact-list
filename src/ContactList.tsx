@@ -1,6 +1,7 @@
 import {useContext} from "react";
 import {Contact} from "./Contact";
 import {UserContext} from "./UserContext";
+import React from "react";
 
 export function ContactList(props) {
     const user = useContext(UserContext);
