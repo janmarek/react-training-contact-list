@@ -1,8 +1,9 @@
 import {Button} from "react-bootstrap";
+import "./Score.css";
 
 export function Score(props) {
     return (
-        <div>
+        <div className="score">
             Score: {props.domaci}:{props.hoste}
             <p>
                 <Button onClick={props.increaseDomaci}>Domaci</Button>{" "}
