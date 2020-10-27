@@ -1,4 +1,10 @@
-import {Formik, ErrorMessage, Form as FormikForm} from "formik";
+import {
+    Formik,
+    ErrorMessage,
+    Form as FormikForm,
+    useFormik,
+    useFormikContext,
+} from "formik";
 import * as yup from "yup";
 import {Form, Button} from "react-bootstrap";
 
@@ -8,10 +14,12 @@ const initialValues = {
     email: "@",
 };
 
+const emailValidation = yup.string().required().email();
+
 const validation = yup.object().shape({
     name: yup.string().required(),
     phone: yup.string().required("Neni vyplneno"),
-    email: yup.string().required().email(),
+    email: emailValidation,
 });
 
 export function AddPage() {
@@ -25,44 +33,49 @@ export function AddPage() {
     return (
         <>
             <h2>Add Contact</h2>
-            <Formik
-                onSubmit={submit}
-                initialValues={initialValues}
-                validationSchema={validation}
-            >
-                {({getFieldProps}) => (
-                    <FormikForm>
-                        <Form.Group controlId="form-name">
-                            <Form.Label>Name:</Form.Label>
-                            <Form.Control
-                                type="text"
-                                {...getFieldProps("name")}
-                            />
-                            <ErrorMessage name="name" component={ErrorView} />
-                        </Form.Group>
-                        <Form.Group controlId="phone-name">
-                            <Form.Label>Phone:</Form.Label>
-                            <Form.Control
-                                type="text"
-                                {...getFieldProps("phone")}
-                            />
-                            <ErrorMessage name="phone" component={ErrorView} />
-                        </Form.Group>
-                        <Form.Group controlId="email-name">
-                            <Form.Label>Email:</Form.Label>
-                            <Form.Control
-                                type="text"
-                                {...getFieldProps("email")}
-                            />
-                            <ErrorMessage name="email" component={ErrorView} />
-                        </Form.Group>
-                        <p>
-                            <Button type="submit">Save</Button>
-                        </p>
-                    </FormikForm>
-                )}
-            </Formik>
+            <AddForm onSubmit={submit} />
         </>
+    );
+}
+
+function EmailForm() {
+    const {getFieldProps} = useFormikContext();
+
+    return (
+        <Form.Group controlId="email-name">
+            <Form.Label>Email:</Form.Label>
+            <Form.Control type="text" {...getFieldProps("email")} />
+            <ErrorMessage name="email" component={ErrorView} />
+        </Form.Group>
+    );
+}
+
+function AddForm({onSubmit}) {
+    return (
+        <Formik
+            onSubmit={onSubmit}
+            initialValues={initialValues}
+            validationSchema={validation}
+        >
+            {({getFieldProps}) => (
+                <FormikForm>
+                    <Form.Group controlId="form-name">
+                        <Form.Label>Name:</Form.Label>
+                        <Form.Control type="text" {...getFieldProps("name")} />
+                        <ErrorMessage name="name" component={ErrorView} />
+                    </Form.Group>
+                    <Form.Group controlId="phone-name">
+                        <Form.Label>Phone:</Form.Label>
+                        <Form.Control type="text" {...getFieldProps("phone")} />
+                        <ErrorMessage name="phone" component={ErrorView} />
+                    </Form.Group>
+                    <EmailForm />
+                    <p>
+                        <Button type="submit">Save</Button>
+                    </p>
+                </FormikForm>
+            )}
+        </Formik>
     );
 }
 
