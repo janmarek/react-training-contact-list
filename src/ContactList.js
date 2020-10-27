@@ -5,6 +5,7 @@ export function ContactList(props) {
         <div>
             {props.contacts.map((contact) => (
                 <Contact
+                    key={contact.id}
                     name={contact.name}
                     phone={contact.phone}
                     email={contact.email}
