@@ -41,7 +41,7 @@ export function AddPage() {
     );
 }
 
-function AddForm({onSubmit}) {
+export function AddForm({onSubmit}) {
     return (
         <Formik
             onSubmit={onSubmit}
