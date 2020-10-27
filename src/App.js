@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
 import {Contact} from "./Contact";
 import {ContactList} from "./ContactList";
@@ -10,12 +10,16 @@ const contacts = [
 ];
 
 function App() {
-    const n = 123;
+    // react hook
+    const [counter, setCounter] = useState(0);
+    // const stateArray = useState(0);
+    // const counter = stateArray[0];
+    // const setCounter = stateArray[1];
 
     return (
         <div className="App">
+            <p>Counter: {counter}</p>
             <ContactList contacts={contacts} />
-            <Contact name="Honza" phone={n} email="mail@mail.cz" />
         </div>
     );
 }
