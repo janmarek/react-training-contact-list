@@ -73,12 +73,12 @@ export function AddPage() {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
-                            <ErrorMessage name="phone" />
-                            {/* {!phoneValid && (
-                                <div className="text-danger">
-                                    Phone is not valid
-                                </div>
-                            )} */}
+                            <ErrorMessage
+                                name="phone"
+                                render={(err) => (
+                                    <div className="text-danger">{err}</div>
+                                )}
+                            />
                         </div>
                         <div>
                             Email:
@@ -90,12 +90,10 @@ export function AddPage() {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                             />
-                            <ErrorMessage name="email" />
-                            {/* {!emailValid && (
-                                <div className="text-danger">
-                                    Email is not valid
-                                </div>
-                            )} */}
+                            <ErrorMessage name="email" component={ErrorView} />
+                            <ErrorView>
+                                dgsdfgdf <strong>sdfdsf</strong>
+                            </ErrorView>
                         </div>
                         <p>
                             <button type="submit">Save</button>
@@ -106,3 +104,5 @@ export function AddPage() {
         </>
     );
 }
+
+const ErrorView = ({children}) => <div className="text-danger">{children}</div>;
