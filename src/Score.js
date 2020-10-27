@@ -1,24 +1,27 @@
 import {Button} from "react-bootstrap";
 import styled from "styled-components";
+import {Card} from "react-bootstrap";
 
 export function Score(props) {
     return (
-        <ScoreDiv>
-            <p className="red">
-                Score: {props.domaci}:{props.hoste}
-            </p>
-            <p>
-                <Button onClick={props.increaseDomaci}>Domaci</Button>{" "}
-                <Button onClick={props.increaseHoste}>Hoste</Button>
-            </p>
-        </ScoreDiv>
+        <ScoreCard>
+            <Card.Body>
+                <ScoreTitle>
+                    Score: {props.domaci}:{props.hoste}
+                </ScoreTitle>
+                <p>
+                    <Button onClick={props.increaseDomaci}>Domaci</Button>{" "}
+                    <Button onClick={props.increaseHoste}>Hoste</Button>
+                </p>
+            </Card.Body>
+        </ScoreCard>
     );
 }
 
-const ScoreDiv = styled.div`
+const ScoreCard = styled(Card)`
     background: #ccc;
-    padding: 1em;
-    p {
-        margin-top: 1em;
-    }
+`;
+
+const ScoreTitle = styled(Card.Title)`
+    color: blue;
 `;
