@@ -1,10 +1,4 @@
-import {
-    Formik,
-    ErrorMessage,
-    Form as FormikForm,
-    useFormik,
-    useFormikContext,
-} from "formik";
+import {Formik, ErrorMessage, Form as FormikForm} from "formik";
 import * as yup from "yup";
 import {Form, Button} from "react-bootstrap";
 
@@ -14,12 +8,10 @@ const initialValues = {
     email: "@",
 };
 
-const emailValidation = yup.string().required().email();
-
 const validation = yup.object().shape({
     name: yup.string().required(),
     phone: yup.string().required("Neni vyplneno"),
-    email: emailValidation,
+    email: yup.string().required().email(),
 });
 
 export function AddPage() {
@@ -27,26 +19,11 @@ export function AddPage() {
         console.log(values);
     }
 
-    // const props = {name: "name", onChange: () => {}, value: "xxx"};
-    // <input type="text" {...props} />
-
     return (
         <>
             <h2>Add Contact</h2>
             <AddForm onSubmit={submit} />
         </>
-    );
-}
-
-function EmailForm() {
-    const {getFieldProps} = useFormikContext();
-
-    return (
-        <Form.Group controlId="email-name">
-            <Form.Label>Email:</Form.Label>
-            <Form.Control type="text" {...getFieldProps("email")} />
-            <ErrorMessage name="email" component={ErrorView} />
-        </Form.Group>
     );
 }
 
@@ -69,7 +46,11 @@ function AddForm({onSubmit}) {
                         <Form.Control type="text" {...getFieldProps("phone")} />
                         <ErrorMessage name="phone" component={ErrorView} />
                     </Form.Group>
-                    <EmailForm />
+                    <Form.Group controlId="email-name">
+                        <Form.Label>Email:</Form.Label>
+                        <Form.Control type="text" {...getFieldProps("email")} />
+                        <ErrorMessage name="email" component={ErrorView} />
+                    </Form.Group>
                     <p>
                         <Button type="submit">Save</Button>
                     </p>
