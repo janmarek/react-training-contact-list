@@ -1,5 +1,5 @@
 import {Button} from "react-bootstrap";
-import "./Score.css";
+import "./Score.scss";
 
 export function Score(props) {
     return (
