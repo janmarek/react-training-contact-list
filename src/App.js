@@ -1,13 +1,14 @@
 import React from "react";
 import "./App.css";
-import {Contact} from "./Contact";
+import * as Contact from "./Contact";
+// import Contact, {a} from "./Contact";
 
 function App() {
-    const a = 123;
+    const n = 123;
 
     return (
         <div className="App">
-            <Contact name="Honza" phone={a} email="mail@google.com" />
+            <Contact.default name="Honza" phone={n} email={Contact.a} />
         </div>
     );
 }

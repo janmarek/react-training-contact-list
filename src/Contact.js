@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Contact(props) {
+export default function Contact(props) {
     return (
         <div>
             <h2>{props.name}</h2>
@@ -9,3 +9,5 @@ export function Contact(props) {
         </div>
     );
 }
+
+export const a = 1;
