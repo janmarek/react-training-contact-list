@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./App.css";
 import {ContactList} from "./ContactList";
+import {Score} from "./Score";
 
 const contacts = [
     {id: 1, name: "Honza", phone: "123", email: "mail@mdafds.cs"},
@@ -25,9 +26,7 @@ function App() {
 
     return (
         <div className="App">
-            <p>
-                Score: {counter}:{counter2}
-            </p>
+            <Score domaci={counter} hoste={counter2} />
             <p>
                 <button onClick={increaseCounter}>Domaci</button>
                 <button onClick={increaseCounter2}>Hoste</button>
