@@ -1,5 +1,6 @@
-import {Formik, ErrorMessage, Form, Field} from "formik";
+import {Formik, ErrorMessage, Form as FormikForm} from "formik";
 import * as yup from "yup";
+import {Form, Button} from "react-bootstrap";
 
 const initialValues = {
     name: "",
@@ -18,6 +19,9 @@ export function AddPage() {
         console.log(values);
     }
 
+    // const props = {name: "name", onChange: () => {}, value: "xxx"};
+    // <input type="text" {...props} />
+
     return (
         <>
             <h2>Add Contact</h2>
@@ -26,30 +30,36 @@ export function AddPage() {
                 initialValues={initialValues}
                 validationSchema={validation}
             >
-                {() => (
-                    <Form>
-                        <div>
-                            Name:
-                            <br />
-                            <Field type="text" name="name" />
+                {({getFieldProps}) => (
+                    <FormikForm>
+                        <Form.Group controlId="form-name">
+                            <Form.Label>Name:</Form.Label>
+                            <Form.Control
+                                type="text"
+                                {...getFieldProps("name")}
+                            />
                             <ErrorMessage name="name" component={ErrorView} />
-                        </div>
-                        <div>
-                            Phone:
-                            <br />
-                            <Field type="text" name="phone" />
+                        </Form.Group>
+                        <Form.Group controlId="phone-name">
+                            <Form.Label>Phone:</Form.Label>
+                            <Form.Control
+                                type="text"
+                                {...getFieldProps("phone")}
+                            />
                             <ErrorMessage name="phone" component={ErrorView} />
-                        </div>
-                        <div>
-                            Email:
-                            <br />
-                            <Field type="text" name="email" />
+                        </Form.Group>
+                        <Form.Group controlId="email-name">
+                            <Form.Label>Email:</Form.Label>
+                            <Form.Control
+                                type="text"
+                                {...getFieldProps("email")}
+                            />
                             <ErrorMessage name="email" component={ErrorView} />
-                        </div>
+                        </Form.Group>
                         <p>
-                            <button type="submit">Save</button>
+                            <Button type="submit">Save</Button>
                         </p>
-                    </Form>
+                    </FormikForm>
                 )}
             </Formik>
         </>
