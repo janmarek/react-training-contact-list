@@ -1,4 +1,4 @@
-import {Formik} from "formik";
+import {Formik, ErrorMessage} from "formik";
 
 const initialValues = {
     name: "",
@@ -71,7 +71,9 @@ export function AddPage() {
                                 name="phone"
                                 value={values.phone}
                                 onChange={handleChange}
+                                onBlur={handleBlur}
                             />
+                            <ErrorMessage name="phone" />
                             {/* {!phoneValid && (
                                 <div className="text-danger">
                                     Phone is not valid
@@ -86,7 +88,9 @@ export function AddPage() {
                                 name="email"
                                 value={values.email}
                                 onChange={handleChange}
+                                onBlur={handleBlur}
                             />
+                            <ErrorMessage name="email" />
                             {/* {!emailValid && (
                                 <div className="text-danger">
                                     Email is not valid
