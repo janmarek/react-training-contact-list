@@ -4,24 +4,24 @@ import {Card} from "react-bootstrap";
 
 export function Score(props) {
     return (
-        <ScoreCard>
+        <Score.Card>
             <Card.Body>
-                <ScoreTitle>
+                <Score.Title>
                     Score: {props.domaci}:{props.hoste}
-                </ScoreTitle>
+                </Score.Title>
                 <p>
                     <Button onClick={props.increaseDomaci}>Domaci</Button>{" "}
                     <Button onClick={props.increaseHoste}>Hoste</Button>
                 </p>
             </Card.Body>
-        </ScoreCard>
+        </Score.Card>
     );
 }
 
-const ScoreCard = styled(Card)`
+Score.Card = styled(Card)`
     background: #ccc;
 `;
 
-const ScoreTitle = styled(Card.Title)`
+Score.Title = styled(Card.Title)`
     color: blue;
 `;
