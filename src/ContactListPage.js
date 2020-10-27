@@ -12,7 +12,9 @@ export function ContactListPage() {
         <>
             <h2>Contact List</h2>
             <p>
-                <Link to="/add">Add</Link>
+                <Link to="/add" className="btn btn-primary">
+                    Add
+                </Link>
             </p>
             <ContactList contacts={contacts} />
         </>
