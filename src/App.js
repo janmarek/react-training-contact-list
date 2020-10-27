@@ -12,7 +12,7 @@ function App() {
                 <Route path="/add">
                     <AddPage />
                 </Route>
-                <Route path="/">
+                <Route exact path="/">
                     <ContactListPage />
                 </Route>
             </BrowserRouter>
