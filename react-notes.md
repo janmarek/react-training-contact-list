@@ -66,13 +66,13 @@ StoryBook
 
 React Intl
 - https://formatjs.io/docs/react-intl/
-- <IntlProvider locale messages />
-- <FormattedMessage id=""/>
+- `<IntlProvider locale messages />`
+- `<FormattedMessage id=""/>`
 
 React Testing Library
 - https://testing-library.com/docs/react-testing-library/cheatsheet
 
-```
+```js
 import {render, fireEvent, waitFor, cleanup} from "@testing-library/react";
 import {AddContactForm} from "./AddContactPage";
 
